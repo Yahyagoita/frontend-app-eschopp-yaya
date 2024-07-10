@@ -11,6 +11,20 @@ function Panier({panier, setPanier}){
         })
         setPanier(newPanier)
     } 
+    const moinQtePanier = (produit) => {
+        const newPanier = panier.map((item) => {
+            if(item.produit.id===produit.id)
+                if(item.qte> 0 ){
+                    return {...item, qte: item.qte - 1}
+                }
+            return item
+        })
+        setPanier(newPanier)
+    } 
+    const deleteFromPanier = (produit) => {
+        const newPanier = panier.filter((item) => item.produit.id !== produit.id)
+    }
+
     return(
         <main>
             <div id="panier">
@@ -33,7 +47,13 @@ function Panier({panier, setPanier}){
                             <td class="prix">{item.produit.prix}</td>
                             <td class="quantite">{item.produit.qte}</td>
                             <td class="total">{item.qte * item.produit.prix}</td>
-                            <td class="action"><button class="plus-panier" onClick={() => plusQtePanier(item.produit)}><img src={btnPlus} /></button><button class="minus-panier"><img src={btnMoins}/></button><button class="remove-panier"><img src={btnDelete}/></button></td>
+                            <td class="action">
+                                <button class="plus-panier" onClick={() => plusQtePanier(item.produit)} alt={item.produit.nom}><img
+                                 src={btnPlus} /></button>
+                                 <button class="minus-panier" onClick={() => moinQtePanier(item.produit)} alt={item.produit.nom}><img
+                                 src={btnMoins}/></button>
+                                 <button class="remove-panier" onClick={() => deleteFromPanier(item.produit)} alt={item.produit.nom}><img 
+                                 src={btnDelete}/></button></td>
                         </tr>
                         )}
                     </tbody>
