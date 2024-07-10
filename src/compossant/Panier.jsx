@@ -48,7 +48,7 @@ function Panier({panier, setPanier}){
                             <td class="quantite">{item.produit.qte}</td>
                             <td class="total">{item.qte * item.produit.prix}</td>
                             <td class="action">
-                                <button class="plus-panier" onClick={() => plusQtePanier(item.produit)} alt={item.produit.nom}><img
+                                <button class="plus-panier" onClick={() => plusQtePanier(item.produit)} alt={item.produit.nom} ><img
                                  src={btnPlus} /></button>
                                  <button class="minus-panier" onClick={() => moinQtePanier(item.produit)} alt={item.produit.nom}><img
                                  src={btnMoins}/></button>
